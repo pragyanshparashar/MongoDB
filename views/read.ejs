@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-zinc-900 text-white px-10 py-8">
+
+        <div class="mb-6">
+            <a href="/" class="text-blue-500">Back To Home</a>
+        </div>
+
+        <h1 class="text-3xl tracking-tighter mb-8">All Users</h1>
+
+        <!-- Users container -->
+        <div class="users flex flex-wrap gap-6">
+          <% if(users.length > 0) { %>
+ <!-- User Card -->
+            <% users.forEach(function(user){%>
+            <div class="user w-72 bg-zinc-800 rounded-lg p-5 min-h-[340px] flex flex-col">
+
+                <!-- Image block -->
+                <div class="h-44 bg-red-500 rounded-md mb-5 mx-1 overflow-hidden">
+                    <img class="w-full h-full object-cover" src=" <%= user.image %>" alt="">
+                </div>
+
+                <h3 class="text-lg tracking-tight mb-1"><%=user.name%></h3>
+                <h5 class="text-zinc-400 text-sm mb-4"><%=user.email%></h5>
+
+                <div class="flex gap-4 mt-auto text-sm">
+                    <a href="/edit/<%= user._id %>" class="text-zinc-200 hover:underline">Edit User</a>
+                    <a href="/delete/<%= user._id %>" class="text-yellow-500 hover:underline">Delete User</a>
+                </div>
+
+            </div>
+
+           <% } ) %>
+        <%  }else { %>
+           <h5>No Users Yet</h5>
+       <% }%>
+           
+        </div>
+
+    </div>
+</body>
+</html>
